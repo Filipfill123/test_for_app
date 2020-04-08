@@ -1,24 +1,54 @@
 {
-  "name": "master-electron",
-  "version": "1.0.0",
-  "description": "Master Electron Course Code",
+  "name": "cornerstone-desktop-app",
+  "version": "0.9.0",
+  "description": "Cornerstone Desktop App",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "watch": "nodemon --exec 'electron .'",
-    "reset": "git reset --hard"
+    "watch": "nodemon --exec electron .",
+    "win": "electron-builder --windows",
+    "win-publish": "electron-builder --windows -p always",
+    "mac": "electron-builder --mac",
+    "mac-publish": "electron-builder --mac -p always",
+    "linux": "electron-builder --linux",
+    "linux-publish": "electron-builder --linux -p always",
+    "make-cert": "electron-builder create-self-signed-cert -p FilipPolak",
+    "postinstall": "electron-builder install-app-deps"
   },
-  "repository": "https://github.com/stackacademytv/master-electron",
-  "keywords": [
-    "Electron",
-    "Master Electron",
-    "demo"
-  ],
-  "author": "GitHub, Stackacademytv",
-  "license": "CC0-1.0",
+  "author": "FilipPolak",
+  "repository": "https://github.com/Filipfill123/test_for_app.git",
   "devDependencies": {
-    "electron": "^5.0.10",
+    "electron": "^6.1.9",
+    "electron-builder": "^22.4.1",
+    "electron-json-storage-sync": "^1.1.1",
+    "electron-rebuild": "^1.10.1",
     "nodemon": "^1.19.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "axios": "^0.19.2",
+    "cheerio": "^1.0.0-rc.3",
+    "electron-is-dev": "^1.1.0",
+    "electron-log": "^4.1.0",
+    "electron-updater": "^4.2.5",
+    "forever-monitor": "^2.0.0",
+    "keytar": "^4.13.0",
+    "node-notifier": "^6.0.0",
+    "cron": "1.8.2"
+  },
+  "build": {
+    "appId": "com.FilipPolak.cornersotne-login",
+    "copyright": "Copyright 2020 CertiCon",
+    "mac": {},
+    "win": {
+      "verifyUpdateCodeSignature": false,
+      "publisherName": "FilipPolak",
+      "icon": "build_assets/icon.png",
+      "publish": {
+        "provider": "github",
+        "bucket": "cornerstone-desktop-app-releases",
+        "region": "eu-central-1"
+      }
+    },
+    "linux": {}
+  }
 }
